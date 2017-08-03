@@ -1,0 +1,31 @@
+
+<table id="toeat">
+    {{#each burger}}
+    {{#unless this.eaten}}
+    <tr>
+    <form action="/{{this.id}}?_method=PUT" method="POST">
+        <td>    <p>{{this.name}}</p>    </td>
+        <td>    <button type="submit">Feed On!</button> </td>
+    </form>
+    </tr>
+    {{/unless}}
+    {{/each}}
+</table>
+<table id="eaten">
+    {{#each burger}}
+    {{#if this.eaten}}
+    <tr>
+        <form action="/delete/{{this.id}}?_method=PUT" method="POST">
+        <td>    <p>{{this.name}}</p>    </td>
+        <td>    <button type="submit">Remove</button> </td>
+        </form>
+    </tr>
+    {{/if}}
+    {{/each}}
+</table>
+
+<form class="newBurger" method="POST" action="/addNewBurger">
+    <textarea id="bName" name="bName" rows="5" cols="35"></textarea><br>
+    <button type="submit">Submit</button><br>
+    <label for="bName">Enter burger and click submit</label>
+</form>
